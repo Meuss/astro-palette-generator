@@ -8,6 +8,7 @@ export default {
     },
     colors: {
       black: '#13151a',
+      white: '#fff',
     },
     extend: {},
   },
