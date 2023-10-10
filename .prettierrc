@@ -6,5 +6,6 @@
   "printWidth": 100,
   "semi": false,
   "jsxSingleQuote": true,
-  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-astro"]
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "pluginSearchDirs": false
 }
