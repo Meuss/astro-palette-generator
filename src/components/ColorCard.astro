@@ -1,0 +1,40 @@
+---
+interface Props {
+  hex: string
+  position: string
+}
+
+const { hex, position } = Astro.props
+---
+
+<li
+  class='color-card flex flex-1 list-none items-center justify-center p-4'
+  data-position={position}
+  style={{ backgroundColor: hex }}
+>
+  <p>{hex}</p>
+</li>
+
+<script define:vars={{ hex, position }}>
+  const card = document.querySelector(`.color-card[data-position="${position}"]`)
+
+  card.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(hex)
+      console.log('Hex value copied to clipboard:', hex)
+    } catch (err) {
+      console.error('Failed to copy hex value: ', err)
+    }
+  })
+</script>
+
+<style lang='scss'>
+  .color-card {
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: flex 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover {
+      flex: 5;
+    }
+  }
+</style>
