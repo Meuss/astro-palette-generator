@@ -1,4 +1,5 @@
 ---
+import ColorCardClient from './ColorCardClient.tsx';
 interface Props {
   hex: string
   position: number
@@ -7,26 +8,7 @@ interface Props {
 const { hex, position } = Astro.props
 ---
 
-<li
-  class='color-card flex flex-1 list-none items-center justify-center p-4'
-  data-position={position}
-  style={{ backgroundColor: hex }}
->
-  <p>{hex}</p>
-</li>
-
-<script define:vars={{ hex, position }}>
-  const card = document.querySelector(`.color-card[data-position="${position}"]`)
-
-  card.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(hex)
-      console.log('Hex value copied to clipboard:', hex)
-    } catch (err) {
-      console.error('Failed to copy hex value: ', err)
-    }
-  })
-</script>
+<ColorCardClient hex={hex} position={position} client:load />
 
 <style lang='scss'>
   .color-card {
